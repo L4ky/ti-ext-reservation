@@ -50,6 +50,7 @@ $config['list']['filter'] = [
 ];
 
 $config['list']['toolbar'] = [
+    'container' => 'reservations/toolbar/list_toolbar',
     'buttons' => [
         'create' => [
             'label' => 'lang:igniter::admin.button_new',
