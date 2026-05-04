@@ -27,7 +27,7 @@ it('validates rules correctly for reservation', function(): void {
         ->and($rules['customer_id'])->toBe(['nullable', 'integer'])
         ->and($rules['first_name'])->toBe(['required_without:customer_id', 'nullable', 'string', 'between:1,48'])
         ->and($rules['last_name'])->toBe(['required_without:customer_id', 'nullable', 'string', 'between:1,48'])
-        ->and($rules['email'])->toBe(['required_without:customer_id', 'nullable', 'email:filter', 'max:96'])
+        ->and($rules['email'])->toBe(['nullable', 'email:filter', 'max:96'])
         ->and($rules['telephone'])->toBe(['required_without:customer_id', 'nullable', 'sometimes', 'string'])
         ->and($rules['reserve_date'])->toBe(['required', 'date_format:Y-m-d'])
         ->and($rules['reserve_time'])->toBe(['required', 'date_format:H:i'])

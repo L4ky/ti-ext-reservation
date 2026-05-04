@@ -32,7 +32,7 @@ class ReservationRequest extends FormRequest
             'customer_id' => ['nullable', 'integer'],
             'first_name' => ['required_without:customer_id', 'nullable', 'string', 'between:1,48'],
             'last_name' => ['required_without:customer_id', 'nullable', 'string', 'between:1,48'],
-            'email' => ['required_without:customer_id', 'nullable', 'email:filter', 'max:96'],
+            'email' => ['nullable', 'email:filter', 'max:96'],
             'telephone' => ['required_without:customer_id', 'nullable', 'sometimes', 'string'],
             'reserve_date' => ['required', 'date_format:Y-m-d'],
             'reserve_time' => ['required', 'date_format:H:i'],
