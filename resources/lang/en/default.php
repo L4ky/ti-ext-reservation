@@ -33,6 +33,9 @@ return [
     'text_total_reserved_table' => 'Total Table(s) Reserved',
 
     'button_assign_table' => 'Assign Table',
+    'button_previous_day' => 'Previous day',
+    'button_today' => 'Today',
+    'button_next_day' => 'Next day',
     'text_heading' => 'Recent Reservations',
     'text_view_heading' => 'My Reservation View',
     'text_setting_reservation' => 'Reservation',

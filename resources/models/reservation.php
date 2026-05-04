@@ -56,6 +56,21 @@ $config['list']['toolbar'] = [
             'class' => 'btn btn-primary',
             'href' => 'reservations/create',
         ],
+        'previous_day' => [
+            'label' => 'lang:igniter.reservation::default.button_previous_day',
+            'class' => 'btn btn-default',
+            'partial' => 'reservations/toolbar/date_button',
+        ],
+        'today' => [
+            'label' => 'lang:igniter.reservation::default.button_today',
+            'class' => 'btn btn-success',
+            'partial' => 'reservations/toolbar/date_button',
+        ],
+        'next_day' => [
+            'label' => 'lang:igniter.reservation::default.button_next_day',
+            'class' => 'btn btn-default',
+            'partial' => 'reservations/toolbar/date_button',
+        ],
         'calendar' => [
             'label' => 'lang:igniter.reservation::default.text_view_list',
             'class' => 'btn btn-default',

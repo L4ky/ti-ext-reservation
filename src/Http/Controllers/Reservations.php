@@ -25,6 +25,8 @@ use Illuminate\Http\RedirectResponse;
 
 class Reservations extends AdminController
 {
+    protected const LIST_DATE_FILTER_SESSION_KEY = 'widget.Reservations-filter-list-filter.scope-date';
+
     public array $implement = [
         ListController::class,
         CalendarController::class,
@@ -107,6 +109,8 @@ class Reservations extends AdminController
 
     public function index(): void
     {
+        $this->applyDefaultDateFilter();
+
         $this->asExtension('ListController')->index();
 
         $this->vars['statusesOptions'] = Status::getDropdownOptionsForReservation();
@@ -248,5 +252,22 @@ class Reservations extends AdminController
         }
 
         return $items;
+    }
+
+    protected function applyDefaultDateFilter(): void
+    {
+        $currentDate = make_carbon(array_get(session(self::LIST_DATE_FILTER_SESSION_KEY), 0, now()))->startOfDay();
+
+        $selectedDate = request()->filled('date')
+            ? make_carbon(request('date'))->startOfDay()
+            : match (request('day')) {
+                'previous' => $currentDate->subDay(),
+                'next' => $currentDate->addDay(),
+                default => now(),
+            };
+
+        $date = $selectedDate->toDateString();
+
+        session()->put(self::LIST_DATE_FILTER_SESSION_KEY, [$date, $date]);
     }
 }
