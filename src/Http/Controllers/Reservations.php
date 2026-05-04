@@ -20,6 +20,7 @@ use Igniter\Local\Http\Actions\LocationAwareController;
 use Igniter\Reservation\Http\Requests\ReservationRequest;
 use Igniter\Reservation\Models\DiningArea;
 use Igniter\Reservation\Models\Reservation;
+use Igniter\Flame\Database\Model;
 use Igniter\User\Http\Actions\AssigneeController;
 use Illuminate\Http\RedirectResponse;
 
@@ -170,6 +171,17 @@ class Reservations extends AdminController
         );
 
         return $this->asExtension(FormController::class)->edit_onDelete($context, $recordId);
+    }
+
+    public function formCreateModelObject(): Model
+    {
+        $model = new Reservation;
+
+        $model->reserve_date = make_carbon(
+            request('date', array_get(session(self::LIST_DATE_FILTER_SESSION_KEY), 0, now())),
+        )->toDateString();
+
+        return $model;
     }
 
     public function calendarGenerateEvents($startAt, $endAt)

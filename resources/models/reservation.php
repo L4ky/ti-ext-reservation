@@ -55,7 +55,7 @@ $config['list']['toolbar'] = [
         'create' => [
             'label' => 'lang:igniter::admin.button_new',
             'class' => 'btn btn-primary',
-            'href' => 'reservations/create',
+            'partial' => 'reservations/toolbar/create_button',
         ],
         'previous_day' => [
             'label' => 'lang:igniter.reservation::default.button_previous_day',
