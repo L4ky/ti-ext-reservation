@@ -229,17 +229,13 @@ $config['form']['fields'] = [
 $config['form']['tabs'] = [
     'defaultTab' => 'lang:igniter.reservation::default.text_tab_general',
     'fields' => [
-        'tables' => [
-            'label' => 'lang:igniter.reservation::default.label_table_name',
+        'location_id' => [
+            'label' => 'lang:igniter.reservation::default.text_tab_restaurant',
             'type' => 'relation',
-            'relationFrom' => 'tables',
-            'nameFrom' => 'summary',
-            'span' => 'left',
-        ],
-        'guest_num' => [
-            'label' => 'lang:igniter.reservation::default.label_guest',
-            'type' => 'number',
+            'relationFrom' => 'location',
+            'nameFrom' => 'location_name',
             'span' => 'right',
+            'placeholder' => 'lang:igniter::admin.text_please_select',
         ],
         'reserve_date' => [
             'label' => 'lang:igniter.reservation::default.label_reservation_date',
@@ -247,17 +243,16 @@ $config['form']['tabs'] = [
             'mode' => 'date',
             'span' => 'left',
         ],
+        'guest_num' => [
+            'label' => 'lang:igniter.reservation::default.label_guest',
+            'type' => 'number',
+            'span' => 'right',
+        ],
         'reserve_time' => [
             'label' => 'lang:igniter.reservation::default.label_reservation_time',
             'type' => 'datepicker',
             'mode' => 'time',
             'span' => 'right',
-        ],
-        'customer_id' => [
-            'label' => 'lang:igniter.reservation::default.text_customer',
-            'type' => 'select',
-            'options' => [Igniter\User\Models\Customer::class, 'getDropdownOptions'],
-            'placeholder' => 'lang:igniter.reservation::default.text_guest',
         ],
         'first_name' => [
             'label' => 'lang:igniter.reservation::default.label_first_name',
@@ -279,16 +274,6 @@ $config['form']['tabs'] = [
                 'condition' => 'value[]',
             ],
         ],
-        'email' => [
-            'label' => 'lang:igniter::admin.label_email',
-            'type' => 'text',
-            'span' => 'left',
-            'trigger' => [
-                'action' => 'show',
-                'field' => 'customer_id',
-                'condition' => 'value[]',
-            ],
-        ],
         'telephone' => [
             'label' => 'lang:igniter.reservation::default.label_customer_telephone',
             'type' => 'text',
@@ -299,13 +284,28 @@ $config['form']['tabs'] = [
                 'condition' => 'value[]',
             ],
         ],
-        'location_id' => [
-            'label' => 'lang:igniter.reservation::default.text_tab_restaurant',
+        'email' => [
+            'label' => 'lang:igniter::admin.label_email',
+            'type' => 'text',
+            'span' => 'left',
+            'trigger' => [
+                'action' => 'show',
+                'field' => 'customer_id',
+                'condition' => 'value[]',
+            ],
+        ],
+        'customer_id' => [
+            'label' => 'lang:igniter.reservation::default.text_customer',
+            'type' => 'select',
+            'options' => [Igniter\User\Models\Customer::class, 'getDropdownOptions'],
+            'placeholder' => 'lang:igniter.reservation::default.text_guest',
+        ],
+        'tables' => [
+            'label' => 'lang:igniter.reservation::default.label_table_name',
             'type' => 'relation',
-            'relationFrom' => 'location',
-            'nameFrom' => 'location_name',
-            'span' => 'right',
-            'placeholder' => 'lang:igniter::admin.text_please_select',
+            'relationFrom' => 'tables',
+            'nameFrom' => 'summary',
+            'span' => 'left',
         ],
         'duration' => [
             'label' => 'lang:igniter.reservation::default.label_reservation_duration',
